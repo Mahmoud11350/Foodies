@@ -1,5 +1,6 @@
 import { start } from "../db/connect";
 import Food from "../models/Food";
+import fs from "fs";
 start();
 
 export const getAllFoods = async (req, res) => {

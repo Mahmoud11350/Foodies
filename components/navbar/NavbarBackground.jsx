@@ -1,10 +1,10 @@
 export default function NavbarBackground() {
   return (
-    <div className="absolute -top-10 left-0 w-full z-10 ">
+    <div className="absolute -top-10 left-0  w-full z-10 ">
       <svg
         xmlns="http://www.w3.org/5000/svg"
         viewBox="0 0 1440 320"
-        className="h-[350px] lg:h-[250px]"
+        className=""
       >
         <path
           fill="#783f22"
@@ -15,5 +15,3 @@ export default function NavbarBackground() {
     </div>
   );
 }
-
-// KoZQfqR1fhH9xcxx

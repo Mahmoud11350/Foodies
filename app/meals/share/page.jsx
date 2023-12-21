@@ -12,12 +12,14 @@ const Share = () => {
       title: formData.get("title"),
       summary: formData.get("summary"),
       instructions: formData.get("instructions"),
-      image:
-        "https://res.cloudinary.com/fullstack-mern-developer/image/upload/v1703017261/Foodies/pizza_atgzvv.jpg",
+      image: formData.get("image"),
     };
+    // const bufferedImage = await meal.image.arrayBuffer();
+    //
+    // console.log(meal.image);
     await createMeal(meal);
-    revalidatePath("/");
-    redirect("/meals");
+    // revalidatePath("/");
+    // redirect("/meals");
   };
   return (
     <section className="container">
@@ -49,6 +51,10 @@ const Share = () => {
             className="w-full bg-[#1C2027] py-2 px-4 text-lg rounded-lg outline-none"
             rows={8}
           />
+        </div>
+        <div>
+          <label htmlFor="image">Pick an Image</label>
+          <input type="file" accept="image" name="image" />
         </div>
         <button className="bg-text py-2 px-4 rounded text-white text-xl text-center capitalize m-auto w-fit block mt-6">
           share meal
