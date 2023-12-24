@@ -7,7 +7,15 @@ const Navlink = ({ href, children }) => {
   const path = usePathname();
 
   return (
-    <Link href={href} className={path.startsWith(href) ? "text-red-400" : ""}>
+    <Link
+      href={href}
+      className={"py-2 px-4 rounded-lg"}
+      style={{
+        background: path.startsWith(href)
+          ? "linear-gradient(90deg, #ff8a05, #f9b331)"
+          : "",
+      }}
+    >
       {children}
     </Link>
   );

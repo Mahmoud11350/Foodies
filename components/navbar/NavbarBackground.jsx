@@ -1,6 +1,6 @@
 export default function NavbarBackground() {
   return (
-    <div className="absolute -top-10 left-0  w-full z-10 ">
+    <div className="absolute -top-10 left-0  w-full z-10 hidden lg:block">
       <svg
         xmlns="http://www.w3.org/5000/svg"
         viewBox="0 0 1440 320"

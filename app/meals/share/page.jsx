@@ -1,7 +1,17 @@
 import FormRow from "@/components/Form/FormRow";
+import ImagePicker from "@/components/meals/ImagePicker";
 import { createMeal } from "@/server/controllers/controllers";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+
+import { v2 as cloudinary } from "cloudinary";
+import SubmitButton from "@/components/meals/SubmitButton";
+
+cloudinary.config({
+  cloud_name: "fullstack-mern-developer",
+  api_key: "769474651237466",
+  api_secret: "OtmUwub6_LvhIvenHkCxz4IPwmI",
+});
 
 const Share = () => {
   const formSubmittion = async (formData) => {
@@ -14,12 +24,29 @@ const Share = () => {
       instructions: formData.get("instructions"),
       image: formData.get("image"),
     };
-    // const bufferedImage = await meal.image.arrayBuffer();
-    //
-    // console.log(meal.image);
+    const bufferedImage = await meal.image.arrayBuffer();
+    const buffer = new Uint8Array(bufferedImage);
+    const uploadedImg = await new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream(
+          {
+            folder: "foodies",
+          },
+          function (error, result) {
+            if (error) {
+              reject(error);
+              return;
+            }
+            resolve(result);
+          }
+        )
+        .end(buffer);
+    });
+    meal.image = uploadedImg.url;
     await createMeal(meal);
-    // revalidatePath("/");
-    // redirect("/meals");
+
+    revalidatePath("/");
+    redirect("/meals");
   };
   return (
     <section className="container">
@@ -52,13 +79,9 @@ const Share = () => {
             rows={8}
           />
         </div>
-        <div>
-          <label htmlFor="image">Pick an Image</label>
-          <input type="file" accept="image" name="image" />
-        </div>
-        <button className="bg-text py-2 px-4 rounded text-white text-xl text-center capitalize m-auto w-fit block mt-6">
-          share meal
-        </button>
+
+        <ImagePicker name={"image"} label={"image"} />
+        <SubmitButton />
       </form>
     </section>
   );

@@ -3,6 +3,5 @@ const connectDB = () => mongoose.connect(process.env.MONGOURL);
 
 export const start = async () => {
   await connectDB();
-  console.log("data base runing");
 };
 start();

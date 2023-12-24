@@ -13,15 +13,12 @@
   }
 }
 
-/* @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Montserrat:wght@400;700&display=swap");
-
-html {
-  font-family: "Quicksand", sans-serif;
-} */
-
 .lds-roller {
   display: inline-block;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 80px;
   height: 80px;
 }

@@ -11,6 +11,7 @@ const MealItem = ({ meal }) => {
           alt={summary}
           width={800}
           height={800}
+          priority
           className="rounded "
         />
       </div>
